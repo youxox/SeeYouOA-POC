@@ -1,7 +1,7 @@
 import requests
 import pyfiglet
 
-banner = pyfiglet.figlet_format("CNVD-2021-01627")
+banner = pyfiglet.figlet_format("cnvd-2021-01627")
 print(banner)
 
 # 从文件中读取URLS
@@ -32,7 +32,7 @@ def except_scan():
                 str_c = str(c)
                 if 'java.lang.NullPointerException:null' in response.text and response.status_code == 200:
                     print("\033[91m[success]\033[0m" + url_payload + " \033[93m[{}]\033[0m".format(str_c))  # 如果发现漏洞,则打印漏洞URL
-                    result_file.write(f'{url}\n')  # 把包含漏洞URL写入文件
+                    result_file.write(f'{url}\n')  # 把漏洞URL写入文件
                 else:
                     print("[None]" + url_payload + " \033[93m[{}]\033[0m".format(str_c))
             except Exception as e:
