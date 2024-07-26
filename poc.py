@@ -14,10 +14,15 @@ def except_scan():
     result_file = open('result.txt', 'a')
 
     """ 指定代理 """
+    http_proxy = 'http://127.0.0.1:1087'
+    https_proxy = 'http://127.0.0.1:1087'
+
     proxies = {
-        'http': 'http://127.0.0.1:1087',
-        'https': 'http://127.0.0.1:1087'
+        'http': f'{http_proxy}',
+        'https': f'{https_proxy}'
     }
+    print("\033[94m[+]\033[0m"+"当前代理"+http_proxy)
+    print()
     print("Start pageExcept Scan ......")
     print()
     i = 0
@@ -31,10 +36,10 @@ def except_scan():
                 c = response.status_code
                 str_c = str(c)
                 if 'java.lang.NullPointerException:null' in response.text and response.status_code == 200:
-                    print("\033[91m[success]\033[0m" + url_payload + " \033[93m[{}]\033[0m".format(str_c))  # 如果发现漏洞,则打印漏洞URL
+                    print("[\033[91msuccess\033[0m]" + url_payload + " \033[93m[{}]\033[0m".format(str_c))  # 如果发现漏洞,则打印漏洞URL
                     result_file.write(f'{url}\n')  # 把漏洞URL写入文件
                 else:
-                    print("[None]" + url_payload + " \033[93m[{}]\033[0m".format(str_c))
+                    print("[\033[92mINFO\033[0m]" + url_payload + " \033[93m[{}]\033[0m".format(str_c))
             except Exception as e:
                 print("[请求超时]" + url_payload)
         except KeyboardInterrupt:
@@ -77,9 +82,9 @@ def vulnerability_scan():
                 if response.status_code == 500 and "-1" in response.text:
                     code = response.status_code
                     str_code = str(code)
-                    print("[None]" + response.url + " \033[93m[{}]\033[0m".format(str_code))
+                    print("[INFO]" + response.url + " \033[93m[{}]\033[0m".format(str_code))
                 else:
-                    print("\033[91m[Success]\033[0m" + url)
+                    print("[\033[91mSuccess\033[0m]" + url)
                     with open("vulnerability_URL.txt", "a") as e:
                         e.write(f"{url} is vulnerable\n")
             except Exception as e:
