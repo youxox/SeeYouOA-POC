@@ -6,4 +6,5 @@
 > 在urls.txt的文件中添加目标地址来对该漏洞进行批量验证,运行脚本后会将可能存在漏洞的url写入result.txt的文件,程序会读取result.txt文件最终POC验证成功后会把存在漏洞的url写入vulnerability_URL.txt文件
    
        python3 poc.py
+脚本默认使用本地1087端口代理
 <img src="demo.png">
