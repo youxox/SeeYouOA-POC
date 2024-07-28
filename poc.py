@@ -12,7 +12,6 @@ with open('urls.txt', 'r') as file:
 def except_scan():
     # 打开需要保存结果的文件
     result_file = open('result.txt', 'a')
-
     """ 指定代理 """
     http_proxy = 'http://127.0.0.1:1087'
     https_proxy = 'http://127.0.0.1:1087'
